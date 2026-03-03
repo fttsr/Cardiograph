@@ -2,6 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>Приложению нужен доступ к Bluetooth для подключения к кардиографу.</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>Bluetooth используется для обмена данными с вашим кардиографом.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Доступ к местоположению нужен для поиска Bluetooth-устройств.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
