@@ -8,13 +8,19 @@ class AppBox {
   // Сессия
   //
   String? get userId => _box.get('user_id') as String?;
+  String? get role => _box.get('role') as String?;
 
-  Future<void> saveSession({required String userId}) async {
+  Future<void> saveSession({
+    required String userId,
+    required String role,
+  }) async {
     await _box.put('user_id', userId);
+    await _box.put('role', role);
   }
 
   Future<void> clearSession() async {
     await _box.delete('user_id');
+    await _box.delete('role');
   }
 
   //
