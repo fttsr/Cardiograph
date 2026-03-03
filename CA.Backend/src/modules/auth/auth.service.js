@@ -3,7 +3,7 @@ import {
   NotFoundError,
   UnauthorizedError,
   ValidationError,
-} from "./auth.errors.js";
+} from "../errors.js";
 import * as repo from "./auth.repository.js";
 import { transporter } from "../../utils/mailer.js";
 
