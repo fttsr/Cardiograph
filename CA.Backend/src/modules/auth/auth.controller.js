@@ -1,5 +1,5 @@
 import * as service from "./auth.service.js";
-import { AppError } from "./auth.errors.js";
+import { AppError } from "../errors.js";
 
 export async function register(req, res) {
   try {
