@@ -1,1 +1,4 @@
 .DS_Store
+../ios/Flutter/Debug.xcconfig
+../ios/Flutter/Release.xcconfig
+../ios/Runner.xcworkspace/contents.xcworkspacedata
