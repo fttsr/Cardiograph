@@ -4,6 +4,7 @@ import 'package:ca_frontend/src/features/auth/presentation/bloc/auth_event.dart'
 import 'package:ca_frontend/src/features/auth/presentation/bloc/auth_state.dart';
 import 'package:ca_frontend/src/features/auth/presentation/screens/forgot_password_screen.dart';
 import 'package:ca_frontend/src/features/auth/presentation/screens/register_screen.dart';
+import 'package:ca_frontend/src/features/home/presentation/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -87,8 +88,7 @@ class _LoginScreenState extends State<LoginScreen>
             Navigator.pushReplacement(
               context,
               MaterialPageRoute(
-                // builder: (_) => const HomeScreen(),
-                builder: (_) => const LoginScreen(),
+                builder: (_) => const HomeScreen(),
               ),
             );
           }
