@@ -8,6 +8,10 @@ import 'package:ca_frontend/src/features/auth/domain/usecases/register_usecase.d
 import 'package:ca_frontend/src/features/auth/domain/usecases/reset_password_usecase.dart';
 import 'package:ca_frontend/src/features/auth/domain/usecases/save_session_usecase.dart';
 import 'package:ca_frontend/src/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:ca_frontend/src/features/bluetooth/data/repositories/bluetooth_repository_impl.dart';
+import 'package:ca_frontend/src/features/bluetooth/data/services/bluetooth_service.dart';
+import 'package:ca_frontend/src/features/bluetooth/domain/repositories/bluetooth_repository.dart';
+import 'package:ca_frontend/src/features/bluetooth/presentation/bloc/bluetooth_bloc.dart';
 import 'package:ca_frontend/src/features/profile/data/datasources/profile_remote_data_source.dart';
 import 'package:ca_frontend/src/features/profile/data/repositories/profile_repository_impl.dart';
 import 'package:ca_frontend/src/features/profile/domain/repositories/profile_repository.dart';
@@ -60,4 +64,10 @@ Future<void> initDi() async {
       saveProfile: sl(),
     ),
   );
+
+  sl.registerLazySingleton(() => BlueToothService());
+  sl.registerLazySingleton<BluetoothRepository>(
+    () => BluetoothRepositoryImpl(sl()),
+  );
+  sl.registerFactory(() => BluetoothBloc(repo: sl()));
 }
