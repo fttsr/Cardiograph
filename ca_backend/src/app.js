@@ -13,7 +13,7 @@ app.use(express.json());
 app.use("/consultation", consultationRoutes);
 app.use("/auth", authRoutes);
 app.use("/reports", reportRoutes);
-app.use("/measurement", measurementRoutes);
+app.use("/measurements", measurementRoutes);
 app.use("/patient", patientRoutes);
 app.use("/patients", patientsRoutes);
 
