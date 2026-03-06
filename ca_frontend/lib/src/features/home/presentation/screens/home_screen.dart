@@ -1,4 +1,5 @@
 import 'package:ca_frontend/src/features/bluetooth/presentation/screens/bluetooth_connection_screen.dart';
+import 'package:ca_frontend/src/features/results/presentation/screen/results_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -136,8 +137,7 @@ class HomeScreen extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                             builder: (_) =>
-                                // const ResultsScreen(),
-                                const HomeScreen(),
+                                const ResultsScreen(),
                           ),
                         );
                       },
