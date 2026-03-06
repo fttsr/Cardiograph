@@ -131,7 +131,9 @@ class ApiService {
     );
 
     if (response.statusCode != 201) {
-      throw Exception('Ошибка создания measurement');
+      throw Exception(
+        'Ошибка создания measurement, ${response.statusCode}',
+      );
     }
 
     final body = jsonDecode(response.body);

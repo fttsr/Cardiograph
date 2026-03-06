@@ -12,12 +12,22 @@ import 'package:ca_frontend/src/features/bluetooth/data/repositories/bluetooth_r
 import 'package:ca_frontend/src/features/bluetooth/data/services/bluetooth_service.dart';
 import 'package:ca_frontend/src/features/bluetooth/domain/repositories/bluetooth_repository.dart';
 import 'package:ca_frontend/src/features/bluetooth/presentation/bloc/bluetooth_bloc.dart';
+import 'package:ca_frontend/src/features/ecg/data/datasources/ecg_ble_data_source.dart';
+import 'package:ca_frontend/src/features/ecg/data/datasources/ecg_remote_data_source.dart';
+import 'package:ca_frontend/src/features/ecg/data/repositories/ecg_repository_impl.dart';
+import 'package:ca_frontend/src/features/ecg/data/services/ecg_pdf_service.dart';
+import 'package:ca_frontend/src/features/ecg/domain/repositories/ecg_repository.dart';
+import 'package:ca_frontend/src/features/ecg/presentation/bloc/ecg_bloc.dart';
 import 'package:ca_frontend/src/features/profile/data/datasources/profile_remote_data_source.dart';
 import 'package:ca_frontend/src/features/profile/data/repositories/profile_repository_impl.dart';
 import 'package:ca_frontend/src/features/profile/domain/repositories/profile_repository.dart';
 import 'package:ca_frontend/src/features/profile/domain/usecases/get_profile_usecase.dart';
 import 'package:ca_frontend/src/features/profile/domain/usecases/save_profile_usecase.dart';
 import 'package:ca_frontend/src/features/profile/presentation/bloc/profile_bloc.dart';
+import 'package:ca_frontend/src/features/results/data/datasources/results_local_data_source.dart';
+import 'package:ca_frontend/src/features/results/data/repositories/results_repository_impl.dart';
+import 'package:ca_frontend/src/features/results/domain/repositories/results_repository.dart';
+import 'package:ca_frontend/src/features/results/presentation/bloc/results_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hive/hive.dart';
 
@@ -70,4 +80,28 @@ Future<void> initDi() async {
     () => BluetoothRepositoryImpl(sl()),
   );
   sl.registerFactory(() => BluetoothBloc(repo: sl()));
+
+  sl.registerLazySingleton<EcgRemoteDataSource>(
+    () => EcgRemoteDataSourceImpl(),
+  );
+  sl.registerLazySingleton(() => EcgBleDataSource());
+  sl.registerLazySingleton(() => EcgPdfService());
+  sl.registerFactory<EcgRepository>(
+    () => EcgRepositoryImpl(
+      appBox: sl(),
+      remote: sl(),
+      ble: sl(),
+      pdf: sl(),
+    ),
+  );
+
+  sl.registerFactory(() => EcgBloc(repo: sl()));
+
+  sl.registerLazySingleton<ResultsLocalDataSource>(
+    () => ResultsLocalDataSource(box: sl<Box>(), appBox: sl()),
+  );
+  sl.registerLazySingleton<ResultsRepository>(
+    () => ResultsRepositoryImpl(sl()),
+  );
+  sl.registerFactory(() => ResultsBloc(repository: sl()));
 }
