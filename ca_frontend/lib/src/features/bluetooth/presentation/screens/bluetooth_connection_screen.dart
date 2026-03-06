@@ -1,4 +1,4 @@
-import 'package:ca_frontend/src/features/home/presentation/screens/home_screen.dart';
+import 'package:ca_frontend/src/features/ecg/presentation/screens/ecg_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -25,8 +25,7 @@ class BluetoothConnectionScreen extends StatelessWidget {
               context,
               MaterialPageRoute(
                 builder: (_) =>
-                    // EcgScreen(device: state.selectedDevice!),
-                    HomeScreen(),
+                    EcgScreen(device: state.selectedDevice!),
               ),
             );
           }
